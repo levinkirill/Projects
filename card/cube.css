@@ -1,0 +1,71 @@
+/* Author: Kirill Levin */
+
+/* <div class="cube">
+    <div class="cube__side cube__side_number_1"></div>
+    <div class="cube__side cube__side_number_2"></div>
+    <div class="cube__side cube__side_number_3"></div>
+    <div class="cube__side cube__side_number_4"></div>
+    <div class="cube__side cube__side_number_5"></div>
+    <div class="cube__side cube__side_number_6"></div>
+  </div> */
+
+:root {
+  --cube-size: 140px;
+  --cube-side-size: 90px;
+  --cube-border-size: 6px;
+  --cube-rotation-time: 3s;
+  --cube-side-color: white;
+  --cube-border-color: rgb(186, 186, 255);
+}
+
+.cube {
+  margin-top: calc((var(--cube-size) - var(--cube-side-size))/2);
+  margin-left: calc((var(--cube-size) - var(--cube-side-size))/2);
+  width: calc(var(--cube-side-size) + (var(--cube-size) - var(--cube-side-size))/2);
+  height: calc(var(--cube-side-size) + (var(--cube-size) - var(--cube-side-size))/2);
+  transform-style: preserve-3d;
+  animation: rotate var(--cube-rotation-time) linear 0s infinite;
+  transform-origin: calc(var(--cube-side-size)/2) calc(var(--cube-side-size)/2) calc(var(--cube-size)/2);
+}
+
+.cube__side {
+  width: var(--cube-side-size);
+  height: var(--cube-side-size);
+  background-color: var(--cube-side-color);
+  border: var(--cube-border-size) solid var(--cube-border-color);
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.cube__side_number_1 {
+  transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate3d(0px, 0px, 0px);
+}
+
+.cube__side_number_2 {
+  transform: rotateX(90deg) rotateY(0deg) rotateZ(0deg) translate3d(0px, calc(var(--cube-size)/2), calc(var(--cube-size)/2));
+}
+
+.cube__side_number_3 {
+  transform: rotateX(90deg) rotateY(90deg) rotateZ(0deg) translate3d(0px, calc(var(--cube-size)/2), calc(var(--cube-size)/2));
+}
+
+.cube__side_number_4 {
+  transform: rotateX(90deg) rotateY(-90deg) rotateZ(0deg) translate3d(0px, calc(var(--cube-size)/2), calc(var(--cube-size)/2));
+}
+
+.cube__side_number_5 {
+  transform: rotateX(90deg) rotateY(-180deg) rotateZ(0deg) translate3d(0px, calc(var(--cube-size)/2), calc(var(--cube-size)/2));
+}
+
+.cube__side_number_6 {
+  transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate3d(0px, 0px, var(--cube-size));
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(360deg) rotateY(360deg) rotateZ(0deg);
+  }
+}
